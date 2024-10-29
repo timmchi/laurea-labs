@@ -1,10 +1,19 @@
 import { View, Text, Button, StyleSheet, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import { FIRESTORE_DB } from "../../firebaseConfig";
-import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import TodoForm from "../components/TodoForm";
-
 import { Todo } from "../../types";
+import { Pressable } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Feather from "@expo/vector-icons/Feather";
 
 const TodosList = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -43,7 +52,48 @@ const TodosList = () => {
   };
 
   const renderTodo = ({ item }: { item: Todo }) => {
-    return <Text>{item.title}</Text>;
+    const ref = doc(FIRESTORE_DB, `todos/${item.todoId}`);
+
+    const toggleDone = async () => {
+      updateDoc(ref, { done: !item.done });
+    };
+
+    const deleteItem = async () => {
+      deleteDoc(ref);
+    };
+
+    return (
+      <View style={styles.todoContainer}>
+        <Pressable onPress={toggleDone} style={styles.todo}>
+          <Text style={styles.todoText}>{item.title}</Text>
+          <View style={styles.icons}>
+            {item.done && (
+              <Ionicons
+                name="checkmark-circle-sharp"
+                size={38}
+                color="green"
+                style={{ padding: 8 }}
+              />
+            )}
+            {!item.done && (
+              <Feather
+                name="circle"
+                size={36}
+                color="black"
+                style={{ padding: 8 }}
+              />
+            )}
+            <Ionicons
+              name="trash-outline"
+              size={36}
+              color="red"
+              style={{ borderWidth: 1, borderRadius: 8, padding: 8 }}
+              onPress={deleteItem}
+            />
+          </View>
+        </Pressable>
+      </View>
+    );
   };
 
   return (
@@ -68,5 +118,25 @@ const TodosList = () => {
 export default TodosList;
 
 const styles = StyleSheet.create({
-  container: { marginHorizontal: 20 },
+  container: {
+    marginHorizontal: 20,
+    paddingVertical: 10,
+  },
+  todoContainer: {
+    borderWidth: 2,
+    margin: 4,
+    padding: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+  },
+  todo: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  todoText: { fontSize: 24, fontWeight: "bold" },
+  icons: { flexDirection: "row", gap: 8 },
 });
