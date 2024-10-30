@@ -14,10 +14,13 @@ import { Todo } from "../../types";
 import { Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
+import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 
-const TodosList = () => {
+// fix the type
+const TodosList = ({ route }: any) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [todoText, setTodoText] = useState("");
+  const { user } = route.params;
 
   useEffect(() => {
     const todoRef = collection(FIRESTORE_DB, "todos");
@@ -26,15 +29,22 @@ const TodosList = () => {
       next: (snapshot) => {
         console.log("todos updated");
 
-        const todos: Todo[] = snapshot.docs.map((doc) => {
-          const data = doc.data();
-          return {
-            title: data.title as string,
-            todoId: doc.id,
-            userId: Number(data.userId),
-            done: data.done,
-          };
-        });
+        const todos: Todo[] = snapshot.docs
+          .map((doc) => {
+            const data = doc.data();
+
+            if (data.userId !== user.uid) {
+              return null;
+            }
+
+            return {
+              title: data.title as string,
+              todoId: doc.id,
+              userId: Number(data.userId),
+              done: data.done,
+            };
+          })
+          .filter((todo): todo is Todo => todo !== null);
         setTodos(todos);
       },
     });
@@ -46,6 +56,7 @@ const TodosList = () => {
     await addDoc(collection(FIRESTORE_DB, "todos"), {
       title: todoText,
       done: false,
+      userId: user.uid,
     });
 
     setTodoText("");
@@ -120,7 +131,7 @@ export default TodosList;
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
-    paddingVertical: 10,
+    marginVertical: 10,
   },
   todoContainer: {
     borderWidth: 2,

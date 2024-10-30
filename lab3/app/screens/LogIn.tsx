@@ -1,10 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import React from "react";
+import LogInForm from "../components/LogInForm";
 
-const LogIn = () => {
+const LogIn = ({ navigation }: any) => {
   return (
-    <View>
-      <Text>LogIn</Text>
+    <View style={{ flex: 1 }}>
+      <LogInForm />
+      <Button
+        onPress={() => navigation.navigate("Sign Up")}
+        title="to signup"
+      />
     </View>
   );
 };
