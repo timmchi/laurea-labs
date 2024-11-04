@@ -91,7 +91,7 @@ const TodosList = ({ route }: any) => {
               <Feather
                 name="circle"
                 size={36}
-                color="black"
+                color="#3662AA"
                 style={{ padding: 8 }}
               />
             )}
@@ -99,7 +99,12 @@ const TodosList = ({ route }: any) => {
               name="trash-outline"
               size={36}
               color="red"
-              style={{ borderWidth: 1, borderRadius: 8, padding: 8 }}
+              style={{
+                borderWidth: 1,
+                borderRadius: 8,
+                padding: 8,
+                borderColor: "#3662AA",
+              }}
               onPress={deleteItem}
             />
           </View>
@@ -137,13 +142,14 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   todoContainer: {
-    borderWidth: 2,
+    borderWidth: 4,
     margin: 4,
     padding: 10,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#ececec",
     borderRadius: 10,
+    borderColor: "white",
   },
   todo: {
     flexDirection: "row",
@@ -151,7 +157,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
   },
-  todoText: { fontSize: 24, fontWeight: "bold" },
+  todoText: { fontSize: 24, fontWeight: "bold", color: "#3662AA" },
   icons: { flexDirection: "row", gap: 8 },
   titleText: { fontSize: 36, fontWeight: "800", color: "#fff" },
 });
