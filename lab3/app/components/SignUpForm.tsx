@@ -13,8 +13,9 @@ import { useState } from "react";
 import auth from "@react-native-firebase/auth";
 import { FirebaseError } from "firebase/app";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { SignUpProps } from "../../types";
 
-const SignUpForm = ({ navigation }: any) => {
+const SignUpForm = ({ navigation }: SignUpProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);

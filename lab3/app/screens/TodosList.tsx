@@ -15,10 +15,10 @@ import { Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
 import { LinearGradient } from "expo-linear-gradient";
-import { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import { MyTodosProps } from "../../types";
 
 // fix the type
-const TodosList = ({ route }: any) => {
+const TodosList = ({ route }: MyTodosProps) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [todoText, setTodoText] = useState("");
   const { user } = route.params;

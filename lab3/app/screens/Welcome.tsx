@@ -2,9 +2,11 @@ import { View, Text, Button, Image, StyleSheet, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import auth from "@react-native-firebase/auth";
+import { WelcomeProps } from "../../types";
 
-// fix types
-const Welcome = ({ navigation }: any) => {
+const Welcome = ({ navigation, route }: WelcomeProps) => {
+  const { user } = route.params;
+
   return (
     <LinearGradient style={{ flex: 1 }} colors={["#617ead", "#3662AA"]}>
       <View style={{ flex: 1 }}>
@@ -30,7 +32,7 @@ const Welcome = ({ navigation }: any) => {
               possibilities are endless
             </Text>
             <Pressable
-              onPress={() => navigation.navigate("My Todos")}
+              onPress={() => navigation.navigate("My Todos", { user })}
               style={styles.button}
             >
               <Text style={styles.buttonText}>View Your Todos</Text>

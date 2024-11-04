@@ -25,11 +25,6 @@ const TodoForm = ({
         value={todoText}
         style={styles.input}
       />
-      {/* <Button
-        onPress={addTodo}
-        title="Add todo"
-        disabled={todoText.length === 0}
-      /> */}
       <Pressable
         onPress={addTodo}
         disabled={todoText.length === 0}

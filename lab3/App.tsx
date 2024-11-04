@@ -9,8 +9,9 @@ import SignUp from "./app/screens/SignUp";
 import Contact from "./app/screens/Contact";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { useState, useEffect } from "react";
+import { StackParamList } from "./types";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<StackParamList>();
 
 export default function App() {
   const [initializing, setInitializing] = useState(true);
@@ -41,7 +42,11 @@ export default function App() {
       <Stack.Navigator>
         {user ? (
           <>
-            <Stack.Screen name="Welcome" component={Welcome} />
+            <Stack.Screen
+              name="Welcome"
+              component={Welcome}
+              initialParams={{ user }}
+            />
             <Stack.Screen
               name="My Todos"
               component={TodosList}
