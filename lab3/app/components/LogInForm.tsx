@@ -93,7 +93,12 @@ export default LogInForm;
 
 const styles = StyleSheet.create({
   content: { paddingHorizontal: 30 },
-  title: { fontSize: 30, fontWeight: "bold", marginBottom: 40 },
+  title: {
+    fontSize: 45,
+    fontWeight: "bold",
+    marginBottom: 40,
+    color: "#3662AA",
+  },
   inputContainer: {
     flexDirection: "row",
     width: "100%",
