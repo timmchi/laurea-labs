@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import TodosList from "./app/screens/TodosList";

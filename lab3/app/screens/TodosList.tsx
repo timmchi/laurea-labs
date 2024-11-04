@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import { FIRESTORE_DB } from "../../firebaseConfig";
 import {
