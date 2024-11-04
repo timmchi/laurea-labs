@@ -14,6 +14,7 @@ import { Todo } from "../../types";
 import { Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
+import { LinearGradient } from "expo-linear-gradient";
 import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 
 // fix the type
@@ -108,21 +109,23 @@ const TodosList = ({ route }: any) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>TodosList</Text>
-      <TodoForm
-        addTodo={addTodo}
-        todoText={todoText}
-        setTodoText={setTodoText}
-      />
-      {todos.length > 0 && (
-        <FlatList
-          data={todos}
-          renderItem={renderTodo}
-          keyExtractor={(todo: Todo) => todo.todoId}
+    <LinearGradient style={{ flex: 1 }} colors={["#617ead", "#3662AA"]}>
+      <View style={styles.container}>
+        <Text style={styles.titleText}>Your Todos</Text>
+        <TodoForm
+          addTodo={addTodo}
+          todoText={todoText}
+          setTodoText={setTodoText}
         />
-      )}
-    </View>
+        {todos.length > 0 && (
+          <FlatList
+            data={todos}
+            renderItem={renderTodo}
+            keyExtractor={(todo: Todo) => todo.todoId}
+          />
+        )}
+      </View>
+    </LinearGradient>
   );
 };
 
@@ -150,4 +153,5 @@ const styles = StyleSheet.create({
   },
   todoText: { fontSize: 24, fontWeight: "bold" },
   icons: { flexDirection: "row", gap: 8 },
+  titleText: { fontSize: 36, fontWeight: "800", color: "#fff" },
 });

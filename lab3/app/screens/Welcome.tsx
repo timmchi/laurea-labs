@@ -12,50 +12,15 @@ const Welcome = ({ navigation }: any) => {
           <View>
             <Image
               source={require("../../assets/homerun.png")}
-              style={{
-                height: 125,
-                width: 125,
-                borderRadius: 20,
-                position: "absolute",
-                top: 10,
-                transform: [
-                  { translateX: 20 },
-                  { translateY: 50 },
-                  { rotate: "-15deg" },
-                ],
-              }}
+              style={styles.image1}
             />
             <Image
               source={require("../../assets/gardening.png")}
-              style={{
-                height: 125,
-                width: 125,
-                borderRadius: 20,
-                position: "absolute",
-                top: 100,
-                right: 50,
-                transform: [
-                  { translateX: 20 },
-                  { translateY: 50 },
-                  { rotate: "25deg" },
-                ],
-              }}
+              style={styles.image2}
             />
             <Image
               source={require("../../assets/shopping.png")}
-              style={{
-                height: 150,
-                width: 150,
-                borderRadius: 20,
-                position: "absolute",
-                top: 200,
-                left: 60,
-                transform: [
-                  { translateX: 20 },
-                  { translateY: 50 },
-                  { rotate: "15deg" },
-                ],
-              }}
+              style={styles.image3}
             />
           </View>
           <View style={styles.content}>
@@ -113,5 +78,31 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  image1: {
+    height: 125,
+    width: 125,
+    borderRadius: 20,
+    position: "absolute",
+    top: 10,
+    transform: [{ translateX: 20 }, { translateY: 50 }, { rotate: "-15deg" }],
+  },
+  image2: {
+    height: 125,
+    width: 125,
+    borderRadius: 20,
+    position: "absolute",
+    top: 100,
+    right: 50,
+    transform: [{ translateX: 20 }, { translateY: 50 }, { rotate: "25deg" }],
+  },
+  image3: {
+    height: 150,
+    width: 150,
+    borderRadius: 20,
+    position: "absolute",
+    top: 200,
+    left: 60,
+    transform: [{ translateX: 20 }, { translateY: 50 }, { rotate: "15deg" }],
   },
 });
