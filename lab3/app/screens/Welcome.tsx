@@ -35,6 +35,12 @@ const Welcome = ({ navigation }: any) => {
             >
               <Text style={styles.buttonText}>View Your Todos</Text>
             </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() => navigation.navigate("Contact")}
+            >
+              <Text style={styles.buttonText}>Contact</Text>
+            </Pressable>
             <Pressable style={styles.button} onPress={() => auth().signOut()}>
               <Text style={styles.buttonText}>Sign Out</Text>
             </Pressable>
@@ -64,7 +70,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     color: "#fff",
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 10,
   },
   button: {
     backgroundColor: "#fff",

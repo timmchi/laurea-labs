@@ -6,6 +6,7 @@ import TodosList from "./app/screens/TodosList";
 import Welcome from "./app/screens/Welcome";
 import LogIn from "./app/screens/LogIn";
 import SignUp from "./app/screens/SignUp";
+import Contact from "./app/screens/Contact";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { useState, useEffect } from "react";
 
@@ -46,6 +47,7 @@ export default function App() {
               component={TodosList}
               initialParams={{ user }}
             />
+            <Stack.Screen name="Contact" component={Contact} />
           </>
         ) : (
           <>
